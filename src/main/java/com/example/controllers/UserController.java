@@ -14,28 +14,54 @@ import java.util.List;
 
 @Controller
 public class UserController {
+    /**
+     * сервис обработки данных из репозитория
+     */
     private final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
+    /**
+     * Направление на страницу со списком пользователей
+     * @param model данные для представления
+     * @return переходим на представление вывода списка пользователей
+     */
     @GetMapping("/users")
     public String findAll(Model model){
         List<User> users = userService.findAll();
         model.addAttribute("users",users);
         return "user-list";
     }
+
+    /**
+     * Направление на страницу создания пользователя
+     * @param user пользователь
+     * @return переходим на страницу для заполнения данными
+     */
     @GetMapping("/user-create")
     public String createUserForm(User user){
         return "user-create";
     }
+
+    /**
+     * Получение данных из представления
+     * @param user
+     * @return перенаправление на страницу со списком пользователей
+     */
     @PostMapping("/user-create")
     public String createUser(User user){
         userService.save(user);
         return "redirect:/users";
     }
 
+    /**
+     * Удаление сотрудника по id
+     * @param id
+     * @return перенаправляем на страницу со списком пользователей
+     */
     @GetMapping("/user-delete/{id}")
     public String deleteUser(@PathVariable("id") int id){
         userService.deleteById(id);

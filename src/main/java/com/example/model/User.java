@@ -1,10 +1,15 @@
 package com.example.model;
 
 public class User {
-    private int id;
-    private String firstName;
-    private String lastName;
+    private int id; // идентификатор
+    private String firstName; // имя
+    private String lastName; // фамилия
 
+    /**
+     * Конструктор пользователя
+     * @param firstName имя
+     * @param lastName фамилия
+     */
     public User(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -13,6 +18,11 @@ public class User {
 
     }
 
+    /**
+     * Переопределим проверку на сравнение
+     * @param obj
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if(this == obj) return true;
