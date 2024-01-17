@@ -7,13 +7,13 @@
 <body>
 <form action="#" th:action="@{/user-update}" th:object="${user}" method="post">
   <label for="id">ID</label>
-  <input readonly type="number" th:field="*{id}" th:text="${user.id}" id="id" placeholder="ID">
+  <input readonly type="number" th:field="${user.id}" id="id" placeholder="ID">
   <br/>
-  <label for="firstName">First name</label>
-  <input type="text" th:field="*{firstName}" th:text="${user.firstName}" id="firstName" placeholder="First Name">
+  <label for="firstName">Имя</label>
+  <input type="text" th:field="${user.firstName}" id="firstName" placeholder="First Name">
   <br/>
-  <label for="lastName">Last name</label>
-  <input type="text" th:field="*{lastName}" th:text="${user.lastName}" id="lastName" placeholder="Last Name">
+  <label for="lastName">Фамилия</label>
+  <input type="text" th:field="${user.lastName}" id="lastName" placeholder="Last Name">
   <br/>
   <input type="submit" value="Изменить">
 </form>
