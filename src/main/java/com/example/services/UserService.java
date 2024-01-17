@@ -29,6 +29,14 @@ public class UserService {
     }
 
     /**
+     * поиск пользователя по id
+     * @param id
+     * @return пользователь
+     */
+    public User findById(int id){
+        return userRepository.findById(id);
+    }
+    /**
      * добавление нового пользователя
      * @param user новый пользователя
      * @return добавленный пользователь

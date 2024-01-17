@@ -32,6 +32,23 @@ public class UserRepository {
     }
 
     /**
+     * поиск пользователя по id
+     * @param id
+     * @return пользователь
+     */
+    public User findById(int id){
+        String sql = "SELECT * FROM userTable WHERE id=?";
+        RowMapper<User> userRowMapper = (r, i) -> {
+            User rowUser = new User();
+            rowUser.setId(r.getInt("id"));
+            rowUser.setFirstName(r.getString("firstName"));
+            rowUser.setLastName(r.getString("lastName"));
+            return rowUser;
+        };
+        return jdbcTemplate.query(sql,new Object[]{id},userRowMapper).stream().findFirst().orElse(null);
+    }
+
+    /**
      * добавление нового пользователя
      * @param user пользователь
      * @return возвращает созданного пользователя
@@ -57,7 +74,7 @@ public class UserRepository {
      * @return возвращает измененного пользователя
      */
     public User update(User user){
-        String sql = "UPDATE FROM userTable SET firsName=?, lastName=? WHERE id=?";
+        String sql = "UPDATE userTable SET firstName=?, lastName=? WHERE id=?";
         jdbcTemplate.update(sql,user.getFirstName(),user.getLastName(),user.getId());
         return user;
     }
